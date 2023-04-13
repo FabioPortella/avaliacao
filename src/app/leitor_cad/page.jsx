@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import zxcvbn from "zxcvbn";
+import zxcvbn from "zxcvbn"; // biblioteca para criação de seha "forte"
 
 const schema = yup.object({
     nome: yup.string()
