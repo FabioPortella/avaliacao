@@ -22,9 +22,9 @@ const schema = yup.object({
         .required('O e-mail é obrigatório'),
 
     senha: yup.string()
-        .test("senha-forte", "A senha deve ser forte", (value) => {
+        .test("senha-forte", "A senha deve ser forte 8 caracteres com maiúsculo, minúsculo, número e um caractere especial", (value) => {
             const result = zxcvbn(value);
-            return result.score >= 3; // Define a pontuação mínima para uma senha ser considerada forte
+            return result.score >= 3; // pontuação mínima para uma senha ser considerada forte = contém uma combinação de caracteres maiúsculos, minúsculos, números e um caractere especial e comprimento de 8 caracteres.
         })
         .required('A senha é obrigatória'),
 
