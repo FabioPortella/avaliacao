@@ -111,7 +111,9 @@ Bibliotecas utilizadas:
 -> npm install react-hook-form
 -> npm install @hookform/resolvers yup
 
+-  biblioteca zxcvbn para gerar senhas fortes no formulário
 
+-> npm install zxcvbn
 
 
 # Para executar aplicção

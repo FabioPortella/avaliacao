@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import zxcvbn from "zxcvbn";
 
 const schema = yup.object({
     nome: yup.string()
@@ -21,8 +22,10 @@ const schema = yup.object({
         .required('O e-mail é obrigatório'),
 
     senha: yup.string()
-        .min(6, 'A senha deve possuir, no mínimo, 6 caracteres')
-        .max(20, 'A senha deve possuir, no máximo, 20 caracteres')
+        .test("senha-forte", "A senha deve ser forte", (value) => {
+            const result = zxcvbn(value);
+            return result.score >= 3; // Define a pontuação mínima para uma senha ser considerada forte
+        })
         .required('A senha é obrigatória'),
 
 }).required();
@@ -41,29 +44,30 @@ const LeitorCad = () => {
       <h2>Cadastro de Leitores</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
 
-        <label className="row mt-2">
-          Nome
-          <input type="text" className="form-control" {...register("nome")} />
-          <span className="text-danger">{errors.nome?.message}</span>
-        </label>
+        <div className="form-floating mt-2">                
+          <input type="text" className="form-control" {...register("nome")}/>
+          <label>Nome</label>
+          <span className='text-danger'>{errors.nome?.message}</span>
+        </div>
 
-        <label className="row mt-2">
-          Data de Nascimento
+        <div className="form-floating mt-2">
           <input type="date" className="form-control" {...register("dataNascimento")} />
-          <span className="text-danger">{errors.inicio?.message}</span>
-        </label>
+          <label>Data de Nascimento</label>
+          <span className="text-danger">{errors.dataNascimento?.message}</span>
+        </div>
 
-        <label className='row mt-2'>
-            E-mail
-            <input type="email" className="form-control" {...register("email")} />
-            <span className='text-danger'>{errors.email?.message}</span>
-        </label>
+        <div className="form-floating mt-2">
+          <input type="email" className="form-control" {...register("email")} />
+          <label>E-mail</label>
+          <span className='text-danger'>{errors.email?.message}</span>
+        </div>
+        
 
-        <label className='row mt-2'>
-            Senha
+        <div className="form-floating mt-2">
             <input type="password" className="form-control" {...register("senha")} />
+            <label>Senha</label>
             <span className='text-danger'>{errors.senha?.message}</span>
-        </label>
+        </div>
 
         <Button type="submit" variant="primary">
           Salvar
