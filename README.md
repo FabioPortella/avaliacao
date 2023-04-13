@@ -104,7 +104,8 @@ Bibliotecas utilizadas:
 
 - React Hook Form com Yup: 
 -> npm install react-hook-form
--> @hookform/resolvers yup
+-> npm install @hookform/resolvers yup
+
 
 
 
