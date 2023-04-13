@@ -10,7 +10,7 @@ import zxcvbn from "zxcvbn"; // biblioteca para criação de seha "forte"
 const schema = yup.object({
     nome: yup.string()
         .min(2, 'O nome deve possuir, no mínimo, 2 caracteres')
-        .max(100, 'O nome deve possuir, no máximo, 100 caracteres')
+        .max(30, 'O nome deve possuir, no máximo, 30 caracteres')
         .required('O nome do curso é obrigatório'),
 
     dataNascimento: yup.date()
@@ -22,7 +22,7 @@ const schema = yup.object({
         .required('O e-mail é obrigatório'),
 
     senha: yup.string()
-        .test("senha-forte", "A senha deve ser forte 8 caracteres com maiúsculo, minúsculo, número e um caractere especial", (value) => {
+        .test("Informe uma Senha-forte", "A senha deve ser forte 8 caracteres com maiúsculo, minúsculo, número e um caractere especial", (value) => {
             const result = zxcvbn(value);
             return result.score >= 3; // pontuação mínima para uma senha ser considerada forte = contém uma combinação de caracteres maiúsculos, minúsculos, números e um caractere especial e comprimento de 8 caracteres.
         })
