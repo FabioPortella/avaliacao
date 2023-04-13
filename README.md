@@ -102,6 +102,11 @@ houverem, devem ser armazenadas de forma criptografada. Deve ser possível criar
 
 Bibliotecas utilizadas:
 
+- Bootstrap
+-> npm i bootstrap@5.2.3
+-> npm i react-bootstrap
+
+
 - React Hook Form com Yup: 
 -> npm install react-hook-form
 -> npm install @hookform/resolvers yup
